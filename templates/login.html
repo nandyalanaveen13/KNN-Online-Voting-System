@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<center>
+    <style>fieldset {
+        text-align: center;
+    }
+    
+    legend {
+        font-size: 1.2em;    
+        font-weight: bold;   
+    }
+    body {
+            background-image: url('https://wallpapers.com/images/hd/aquamarine-background-border-yn6r5siv0v01hwu9.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff; }
+    </style>
+<body>
+    <fieldset>
+        <legend>Enter login details</legend>
+
+    <h1>Login</h1>
+    <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <p>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        </p>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    <p>
+    <a style="text-decoration:none; padding-right:10px; border:solid; background-color:yellow" href="/register">Register</a>
+    </p>
+</body>
+</center>
+</head>

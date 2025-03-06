@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voting System</title>
+    <style>
+        body {
+            background-image: url('https://think360studio-media.s3.ap-south-1.amazonaws.com/download/india-flag-2021-wallpaper-8.png'); /* Replace with your image URL */
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff; 
+        }
+        .double {
+            border-style: double;
+            border-width: 10px;
+            border-color: rgb(21, 16, 19);
+            margin:20px 500px 20px 500px
+        }
+        marquee {
+            background-color: rgb(221, 255, 0);
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <marquee><h1 style="color: black;">Welcome: {{ session['username'] }}</h1></marquee>
+
+        <h1 class="double" style="color: black;">Real-time Video Feed</h1>
+        <img src="{{ url_for('video_feed') }}" width="720" height="480">
+
+        <!-- Capture Face Button -->
+        <form method="POST" action="{{ url_for('capture') }}">
+            <h2>
+                <button type="submit" style="background-color:rgb(39, 223, 189); font-size: 15px; padding: 10px 22px;">Capture Face</button>
+            </h2>
+            
+        </form>
+
+        <!-- Vote Form -->
+        <form action="{{ url_for('vote') }}" method="post">
+            <label for="candidate">Vote for:</label>
+            <select id="candidate" name="candidate" style="background-color: rgb(39, 223, 189); font-size: 13px; padding: 5px 20px;">
+                <option value="BJP">BJP</option>
+                <option value="CONGRESS">CONGRESS</option>
+                <option value="AAP">AAP</option>
+                <option value="NOTA">NOTA</option>
+            </select>
+            <input type="submit" value="Submit Vote" style="padding: 10px 20px; background-color: blue; color: white; font-size: 16px; border-radius: 5px;">
+
+        </form>
+        <p>
+        <!-- Links -->
+        <a style="text-decoration:none; padding-right:10px; border:solid; background-color:yellow" href="{{ url_for('results') }}">View Results</a>
+        <a style="text-decoration:none; padding-right:10px; border:solid; background-color:yellow" href="{{ url_for('logout') }}">Logout</a>
+        </p>
+    </center>
+</body>
+</html>

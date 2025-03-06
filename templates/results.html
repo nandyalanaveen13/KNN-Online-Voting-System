@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<center>
+    <style> body {
+        background-image: url('https://www.citizensforethics.org/wp-content/uploads/2024/08/CertReport-header-1200x675.png'); 
+        background-size: cover; 
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #fff; }
+</style>
+<body>
+    <h1>Voting Results</h1>
+
+    <!-- Table displaying the results -->
+    <table border="1">
+        <tr>
+            <th>Party</th>
+            <th>Votes</th>
+        </tr>
+        {% for party, count in results %}
+        <tr>
+            <td>{{ party }}</td>
+            <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Chart displaying the results -->
+    <canvas id="resultsChart" width="800" height="400"></canvas>
+    
+    <script>
+        // Data for the chart
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        const results = {{ results | tojson }};
+        const labels = results.map(result => result[0]);
+        const data = results.map(result => result[1]);
+
+        const resultsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Votes',
+                    data: data,
+                    backgroundColor: 'rgba(243, 225, 107, 1)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    
+    <!-- Link to go back to home -->
+    <a style="text-decoration:none; padding-right:10px; border:solid; background-color:yellow" href="/">Back to Home</a>
+</body>
+</center>
+</html>
